@@ -209,24 +209,49 @@ namespace Yad2Updater
                             for (int i = 0; i < 40; i++)
                             {
 
-                                string query_id = doc.DocumentNode.SelectNodes("//*[@id=\"feed_item_" + i + "\"]")[0].GetAttributeValue("item-id","NotExist");
+                                string query_id = doc.DocumentNode.SelectNodes("//*[@id=\"feed_item_" + i + "\"]")[0].GetAttributeValue("item-id", "NotExist");
 
                                 string item_url = "https://www.yad2.co.il/item/" + query_id;
                                 var item_web = new HtmlWeb();
                                 HtmlAgilityPack.HtmlDocument item_doc = item_web.Load(item_url);
+                                string stringa = "//*[@id=\"__layout\"]/div/div/div/main/div/div[3]/div[5]/div/div[3]/span[2]";
+                                //*[@id="__layout"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/div[1]/span[2]
+                                //*[@id="__layout"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/div[1]/span[1]
+                                string bla = item_doc.DocumentNode.OuterHtml;
+                                string blav = item_doc.DocumentNode.InnerHtml;
+                                string blab = item_doc.DocumentNode.InnerText;
+                                string blan = item_doc.DocumentNode.ToString();
+                                string blaa = item_doc.DocumentNode.XPath;
+
+
+                                var start = blav.IndexOf("main_title");
+                                var match2 = bla.Substring(start, bla.IndexOf("</span>") - start);
+                                string make1 = item_doc.DocumentNode.SelectSingleNode("/html/body").InnerText;
+                                //string make2 = item_doc.DocumentNode.SelectNodes("//*[@id=\"__layout\"]")[0].InnerText;
+                                string make3 = item_doc.DocumentNode.SelectNodes("//*[@id=\"__layout\"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/div[1]/span[1]")[0].InnerText;
+                                //string make = item_doc.DocumentNode.SelectSingleNode(stringa).InnerText;
+                                //*[@id="more_details_kilometers"]/span
+                                //*[@id="__layout"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/strong
+                                string _price_per_month3 = item_doc.DocumentNode.InnerText;
+                                string _price_per_month4 = item_doc.DocumentNode.InnerHtml;
+                                string _price_per_month = item_doc.DocumentNode.SelectNodes("//*[@id=\"__layout\"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/strong")[0].InnerText;
+
+
                                 string make_and_model = doc.DocumentNode.SelectNodes("//*[@id=\"feed_item_" + i + "_title\"]/span")[0].InnerText;
                                 make_and_model.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
                                 string info = doc.DocumentNode.SelectNodes("//*[@id=\"feed_item_" + i + "\"]/div/div[1]/div[2]/span[2]")[0].InnerText;
                                 //string query_id = doc.DocumentNode.SelectNodes("//*[@id=\"accordion_wide_0\"]/div/div[3]/div[2]/span")[0].InnerText;
                                 string make4 = doc.DocumentNode.SelectNodes("//*[@id=\"feed_item_" + i + "_title\"]/span[1]")[0].InnerText;
-                                string model = doc.DocumentNode.SelectNodes("//*[@id=\"feed_item_" + i + "\"]/div/div[1]/div[2]/span[2]")[0].InnerText;
+                                //string street_addr = Regex.Replace(_street_addr, @"\s+", " ");
+                                //string model = doc.DocumentNode.SelectNodes("//*[@id=\"feed_item_" + i + "\"]/div/div[1]/div[2]/span[2]")[0].InnerText;
                                 string year = doc.DocumentNode.SelectNodes("//*[@id=\"data_year_" + i + "\"]")[0].InnerText;
                                 string yad = doc.DocumentNode.SelectNodes("//*[@id=\"data_hand_" + i + "\"]")[0].InnerText;
+                                //*[@id="data_engine_size_0"]
                                 string smk = doc.DocumentNode.SelectNodes("//*[@id=\"data_engine_size_" + i + "\"]")[0].InnerText;
-                                string _price_per_month = doc.DocumentNode.SelectNodes("//*[@id=\"feed_item_" + i + "_price\"]")[0].InnerText;
+                                //string _price_per_month = doc.DocumentNode.SelectNodes("//*[@id=\"feed_item_" + i + "_price\"]")[0].InnerText;
                                 string price_per_month = Regex.Replace(_price_per_month, @"\s+", " ");
-                                
-                                table.Rows.Add(query_id, make4, model, year, yad, smk, price_per_month);
+
+                                //table.Rows.Add("1", make, model, year, yad, smk, price_per_month);
                             }
 
                             url += "&page=" + (page + 1);
