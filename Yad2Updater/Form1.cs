@@ -177,30 +177,7 @@ namespace Yad2Updater
                                 var item_web = new HtmlWeb();
                                 HtmlAgilityPack.HtmlDocument item_doc = item_web.Load(item_url);
 
-                                //var item_page = item_doc.DocumentNode.SelectSingleNode("//*[@id=\"__layout\"]").InnerText;
-                                foreach (var aa in item_doc.DocumentNode.GetAttributes())
-                                    if (aa.Value == "main-title") ;
-
-
-                                var item_page = item_doc.DocumentNode.GetAttributeValue("main-title", "aaaaa");
-                                //var item_page = item_doc.DocumentNode.Element("h4");
-                                //SelectSingleNode("//*[@class=\"main_title\"]").InnerText;
-
-                                //*[@id="__layout"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/h4
-                                string _street_addr = item_doc.DocumentNode.SelectSingleNode("//*[@id=\"__layout\"]/div/main/div").InnerText;
-                                //string _street_addr = item_doc.DocumentNode.SelectSingleNode("//*[@id=\"__layout\"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/h4").ToString();
-                                //string _street_addr = item_doc.DocumentNode.SelectNodes("//*[@id=\"__layout\"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/h4")[0].InnerText;
-                                string street_addr = Regex.Replace(_street_addr, @"\s+", " ");
-                                string city = item_doc.DocumentNode.SelectNodes("//*[@id=\"__layout\"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/span/span[2]")[0].InnerText;
-                                string neighborhood = item_doc.DocumentNode.SelectNodes("//*[@id=\"__layout\"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/span/span[1]")[0].InnerText;
-                                string rooms = item_doc.DocumentNode.SelectNodes("//*[@id=\"__layout\"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/div[1]/dl[1]/dd")[0].InnerText;
-                                string floor = item_doc.DocumentNode.SelectNodes("//*[@id=\"__layout\"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/div[1]/dl[2]/dd")[0].InnerText;
-                                string sq_meter = item_doc.DocumentNode.SelectNodes("//*[@id=\"__layout\"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/div[1]/dl[3]/dd")[0].InnerText;
-                                string _price_per_month = item_doc.DocumentNode.SelectNodes("//*[@id=\"__layout\"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/strong")[0].InnerText;
-                                string price_per_month = Regex.Replace(_price_per_month, @"\s+", " ");
-
-
-                                /* //fetching for main page:
+                                //fetching for main page:
                                 string _street_addr = doc.DocumentNode.SelectNodes("//*[@id=\"feed_item_" + i + "_title\"]/span[1]")[0].InnerText;
                                 string street_addr = Regex.Replace(_street_addr, @"\s+", " ");
                                 string city = doc.DocumentNode.SelectNodes("//*[@id=\"feed_item_" + i + "\"]/div/div[1]/div[2]/span[2]")[0].InnerText;
@@ -209,12 +186,12 @@ namespace Yad2Updater
                                 string sq_meter = doc.DocumentNode.SelectNodes("//*[@id=\"data_SquareMeter_" + i + "\"]")[0].InnerText;
                                 string _price_per_month = doc.DocumentNode.SelectNodes("//*[@id=\"feed_item_" + i + "_price\"]")[0].InnerText;
                                 string price_per_month = Regex.Replace(_price_per_month, @"\s+", " ");
-                                */
+                                
                                 table.Rows.Add(query_id, street_addr, city, rooms, floor, sq_meter, price_per_month);
 
                             }
 
-                            //url += "&page=" + (page + 1);
+                            url += "&page=" + (page + 1);
                         }
                     }
                     break;
