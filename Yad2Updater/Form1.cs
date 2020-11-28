@@ -172,19 +172,10 @@ namespace Yad2Updater
 
                             for (int i = 0; i < 40; i++)
                             {
-                                string query_id = doc.DocumentNode.SelectNodes("//*[@id=\"feed_item_" + i + "\"]")[0].GetAttributeValue("item-id", "aaaaaa");
+                                string query_id = doc.DocumentNode.SelectNodes("//*[@id=\"feed_item_" + i + "\"]")[0].GetAttributeValue("item-id", "NotExist");
                                 string item_url = "https://www.yad2.co.il/item/" + query_id;
                                 var item_web = new HtmlWeb();
                                 HtmlAgilityPack.HtmlDocument item_doc = item_web.Load(item_url);
-
-                                //var item_page = item_doc.DocumentNode.SelectSingleNode("//*[@id=\"__layout\"]").InnerText;
-                                foreach (var aa in item_doc.DocumentNode.GetAttributes())
-                                    if (aa.Value == "main-title") ;
-
-
-                                var item_page = item_doc.DocumentNode.GetAttributeValue("main-title", "aaaaa");
-                                //var item_page = item_doc.DocumentNode.Element("h4");
-                                //SelectSingleNode("//*[@class=\"main_title\"]").InnerText;
 
                                 //*[@id="__layout"]/div/main/div/div[3]/div[5]/div/div[1]/div/div/div[2]/div[2]/div/h4
                                 string _street_addr = item_doc.DocumentNode.SelectSingleNode("//*[@id=\"__layout\"]/div/main/div").InnerText;
