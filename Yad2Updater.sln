@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomoUpdater", "Yad2Updater\KomoUpdater.csproj", "{AB92CCE3-8494-49E5-AB97-E3D971D3921D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yad2Updater", "Yad2Updater\Yad2Updater.csproj", "{AB92CCE3-8494-49E5-AB97-E3D971D3921D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
